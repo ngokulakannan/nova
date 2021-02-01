@@ -322,8 +322,8 @@ export default {
      * save all information to DB
      */
     signUp: async function (   ) {
-      this.saveCompany()
-      this.saveUser()
+      await this.saveCompany()
+      await this.saveUser()
     },
 
     /**

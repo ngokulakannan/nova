@@ -116,7 +116,8 @@ email:""
         email_domain = this.email.substr(this.email.indexOf("@")+1, this.email.length);
       }
 
-      let website_domain = this.website.substr(this.website.indexOf(".")+1, this.website.length);
+      let prefix = (this.website.indexOf("www.") > -1)? this.website.indexOf(".")+1 : 0
+      let website_domain = this.website.substr(prefix, this.website.length);
       if (email_domain == website_domain) {
         this.$emit('edit' )  
         this.$emit('close' ) 
