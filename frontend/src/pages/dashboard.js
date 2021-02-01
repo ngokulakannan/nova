@@ -13,7 +13,7 @@ import NotFoundComponent from '../components/not_found.vue'
 
 const apolloClient = new ApolloClient({
     //uri: "http://localhost:4000/graphql"
-    uri: "https://5f61d2aaca7b.ngrok.io/graphql"
+    uri: "https://2466bf04c643.ngrok.io/graphql"
 })
 
 
