@@ -1,17 +1,7 @@
 
 <template>
-  <!-- outer div -->
-  <div class="dashboard_cover">
-    <!-- Header of the App -->
-    <div class="header">
-      <!-- App logo -->
-      <div class="holder">
-        <img src="../../assets/logo.png" class="logo" height="40px" />
-        <span class="logo-text">Nova</span>
-        <span class="logo-sub-text">Benefits</span>
-      </div>
-    </div>
-
+ 
+    
     <!--Main  -->
     <div class="main">
       <div class="main-cover" style="">
@@ -29,12 +19,12 @@
               type="number"
               class="number"
               min="0"
-              :max="companies.length / records_per_page"
+              :max="filterMatches.length / records_per_page"
               v-model="start_page"
-            />
+            />  of {{ Math.floor(filterMatches.length / records_per_page) }} pages
           </div>
           <!-- Add company -->
-          <a href="/signup.html">
+          <a href="/signup">
             <input type="button" value="Add company " class="add-button"
           /></a>
         </div>
@@ -53,8 +43,8 @@
               <td>
                 <a
                   class="comapany-link"
-                  :href="'/company.html?id=' + company.id"
-                  target="_blank"
+                  :href="'/company?id=' + company.id"
+                   
                   >View Details</a
                 >
               </td>
@@ -72,10 +62,11 @@
           >
             No Data Found.
           </div>
+          <div v-if="loading"> </div>
         </div>
       </div>
     </div>
-  </div>
+  
 </template>
 
 
@@ -95,6 +86,7 @@
   text-align: center;
   color: #231c57;
   font-size: 32px;
+  font-family: cursive;
 }
 
 .table-controls {
@@ -158,7 +150,7 @@ input[type="number"] {
   border: none;
   border-bottom: 2px solid rgb(43, 41, 41);
   outline: none;
-  width: 50px;
+  width: 40px;
   height: 25px;
   background-color: transparent;
   color: rgb(12, 12, 12);
@@ -255,6 +247,8 @@ export default {
      * @param  {Array} item row in matches table
      */
     search: function (item) {
+      // reset to first page
+      this.start_page = 0
       //if search string is not empty
       if (this.search_text != "") {
         // if search string is present in company name
@@ -287,10 +281,27 @@ export default {
      * filter the table data
      */
     filterMatches: function () {
+      
       return this.companies.filter(this.search);
     },
+
+    /**
+     * Get the loading status
+     */
+    loading: function(){
+      if(this.$apollo.loading){
+         document.getElementById("loader_cover").style.display = "block";
+         return this.$apollo.loading
+      }
+      else{
+        document.getElementById("loader_cover").style.display = "none";
+         return this.$apollo.loading
+      }
+      }
+     
   },
-  mounted: function () {},
+  
+ 
 };
 </script>
 

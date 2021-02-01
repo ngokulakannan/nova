@@ -2,298 +2,289 @@
 <template>
   <!-- outer div -->
   <div>
-    <!-- Header of the App -->
-    <div class="header">
-      <!-- App logo -->
-      <div class="holder">
-        <img src="../../assets/logo.png" class="logo" height="40px" />
-        <span class="logo-text">Nova</span>
-        <span class="logo-sub-text">Benefits</span>
-        <!-- toast to show messages -->
-        <div class="toast"></div>
-      </div>
-    </div>
-
     <!-- Main content -->
     <div class="main" v-if="this.id">
       <div class="main-cover">
-        <div class="title">Company Details</div>
-
-        <div>
-          <!-- Table to show company details -->
-          <table>
-            <tr>
-              <td>
-                Name: <span>{{ name }}</span>
-              </td>
-              <td>
-                Website:<span>{{ website }}</span>
-              </td>
-              <td>
-                No of Employees:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ number_of_employees }}</span>
-                <!-- if in editmode show this -->
-                <input
-                  v-else
-                  type="number"
-                  v-model.number="number_of_employees"
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                Funding stage:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ funding_stage }}</span>
-
-                <!-- if in editmode show this -->
-                <select v-else v-model="funding_stage">
-                  <option>Self</option>
-                  <option>Seed</option>
-                  <option>Venture</option>
-                  <option>IPO</option>
-                </select>
-              </td>
-              <td>
-                Industry:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ industry }}</span>
-
-                <!-- if in editmode show this -->
-                <input v-else type="text" v-model="industry" />
-              </td>
-              <td>
-                Sum Insured:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ number_of_employees }}</span>
-
-                <!-- if in editmode show this -->
-                <input v-else type="number" v-model.number="sum_insured" />
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                Family covered:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ family_covered }}</span>
-
-                <!-- if in editmode show this -->
-                <span v-else>
+        <!-- <div class="title">Company Details</div> -->
+        <fieldset>
+          <legend class="title">Company Details</legend>
+          <div>
+            <!-- Table to show company details -->
+            <table>
+              <tr>
+                <td>
+                  Name: <span>{{ name }}</span>
+                </td>
+                <td>
+                  Website:<span>{{ website }}</span>
+                </td>
+                <td>
+                  No of Employees:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ number_of_employees }}</span>
+                  <!-- if in editmode show this -->
                   <input
-                    type="radio"
-                    id="family_covered_yes"
-                    name="family"
-                    value="true"
-                    v-model="family_covered"
+                    v-else
+                    type="number"
+                    v-model.number="number_of_employees"
+                    min="2"
                   />
-                  <label for="family_covered_yes">Yes </label>
-                  <input
-                    type="radio"
-                    id="family_covered_no"
-                    name="family"
-                    value="false"
-                    v-model="family_covered"
-                  />
-                  <label for="family_covered_no">No</label><br />
-                </span>
-              </td>
-              <td>
-                Parents covered:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ parents_covered }}</span>
+                </td>
+              </tr>
 
-                <!-- if in editmode show this -->
-                <span v-else>
-                  <input
-                    type="radio"
-                    id="parents_covered_yes"
-                    name="parents"
-                    value="true"
-                    v-model="parents_covered"
-                  />
-                  <label for="parents_covered_yes">Yes </label>
-                  <input
-                    type="radio"
-                    id="parents_covered_no"
-                    name="parents"
-                    value="false"
-                    v-model="parents_covered"
-                  />
-                  <label for="parents_covered_no">No</label><br />
-                </span>
-              </td>
-              <td>
-                Maternity covered:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ maternity_covered }}</span>
+              <tr>
+                <td>
+                  Funding stage:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ funding_stage }}</span>
 
-                <!-- if in editmode show this -->
-                <span v-else>
-                  <input
-                    type="radio"
-                    id="maternity_covered_yes"
-                    name="maternity"
-                    value="true"
-                    v-model="maternity_covered"
-                  />
-                  <label for="maternity_covered_yes">Yes </label>
-                  <input
-                    type="radio"
-                    id="maternity_covered_no"
-                    name="maternity"
-                    value="false"
-                    v-model="maternity_covered"
-                  />
-                  <label for="maternity_covered_no">No</label><br />
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Gym membership:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ gym_membership }}</span>
+                  <!-- if in editmode show this -->
+                  <select v-else v-model="funding_stage">
+                    <option>Self</option>
+                    <option>Seed</option>
+                    <option>Venture</option>
+                    <option>IPO</option>
+                  </select>
+                </td>
+                <td>
+                  Industry:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ industry }}</span>
 
-                <!-- if in editmode show this -->
-                <span v-else>
-                  <input
-                    type="radio"
-                    id="gym_membership_yes"
-                    name="gym"
-                    value="true"
-                    v-model="gym_membership"
-                  />
-                  <label for="gym_membership_yes">Yes </label>
-                  <input
-                    type="radio"
-                    id="gym_membership_no"
-                    name="gym"
-                    value="false"
-                    v-model="gym_membership"
-                  />
-                  <label for="gym_membership_no">No</label><br />
-                </span>
-              </td>
-              <td>
-                Free doctor on call:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ free_doctor_on_call }}</span>
+                  <!-- if in editmode show this -->
+                  <input v-else type="text" v-model="industry" />
+                </td>
+                <td>
+                  Sum Insured:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ number_of_employees }}</span>
 
-                <!-- if in editmode show this -->
-                <span v-else>
-                  <input
-                    type="radio"
-                    id="free_doctor_on_call_yes"
-                    name="doctor"
-                    value="true"
-                    v-model="free_doctor_on_call"
-                  />
-                  <label for="free_doctor_on_call_yes">Yes </label>
-                  <input
-                    type="radio"
-                    id="free_doctor_on_call_no"
-                    name="doctor"
-                    value="false"
-                    v-model="free_doctor_on_call"
-                  />
-                  <label for="free_doctor_on_call_no">No</label><br />
-                </span>
-              </td>
-              <td>
-                Paid leaves:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ paid_leaves }}</span>
+                  <!-- if in editmode show this -->
+                  <input v-else type="number" v-model.number="sum_insured" />
+                </td>
+              </tr>
 
-                <!-- if in editmode show this -->
-                <span v-else>
-                  <input type="number" v-model.number="paid_leaves" />
-                </span>
-              </td>
-            </tr>
+              <tr>
+                <td>
+                  Family covered:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ family_covered }}</span>
 
-            <tr>
-              <td>
-                Flexible work timings:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ flexible_work_timings }}</span>
+                  <!-- if in editmode show this -->
+                  <span v-else>
+                    <input
+                      type="radio"
+                      id="family_covered_yes"
+                      name="family"
+                      value="true"
+                      v-model="family_covered"
+                    />
+                    <label for="family_covered_yes">Yes </label>
+                    <input
+                      type="radio"
+                      id="family_covered_no"
+                      name="family"
+                      value="false"
+                      v-model="family_covered"
+                    />
+                    <label for="family_covered_no">No</label><br />
+                  </span>
+                </td>
+                <td>
+                  Parents covered:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ parents_covered }}</span>
 
-                <!-- if in editmode show this -->
-                <span v-else>
-                  <input
-                    type="radio"
-                    id="flexible_work_timings_yes"
-                    name="work"
-                    value="true"
-                    v-model="flexible_work_timings"
-                  />
-                  <label for="flexible_work_timings_yes">Yes </label>
-                  <input
-                    type="radio"
-                    id="flexible_work_timings_no"
-                    name="work"
-                    value="false"
-                    v-model="flexible_work_timings"
-                  />
-                  <label for="flexible_work_timings_no">No</label><br />
-                </span>
-              </td>
-              <td>
-                Remote option:
-                <!-- if not in editmode show this -->
-                <span v-if="!edit_mode">{{ remote_option }}</span>
+                  <!-- if in editmode show this -->
+                  <span v-else>
+                    <input
+                      type="radio"
+                      id="parents_covered_yes"
+                      name="parents"
+                      value="true"
+                      v-model="parents_covered"
+                    />
+                    <label for="parents_covered_yes">Yes </label>
+                    <input
+                      type="radio"
+                      id="parents_covered_no"
+                      name="parents"
+                      value="false"
+                      v-model="parents_covered"
+                    />
+                    <label for="parents_covered_no">No</label><br />
+                  </span>
+                </td>
+                <td>
+                  Maternity covered:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ maternity_covered }}</span>
 
-                <!-- if in editmode show this -->
-                <span v-else>
+                  <!-- if in editmode show this -->
+                  <span v-else>
+                    <input
+                      type="radio"
+                      id="maternity_covered_yes"
+                      name="maternity"
+                      value="true"
+                      v-model="maternity_covered"
+                    />
+                    <label for="maternity_covered_yes">Yes </label>
+                    <input
+                      type="radio"
+                      id="maternity_covered_no"
+                      name="maternity"
+                      value="false"
+                      v-model="maternity_covered"
+                    />
+                    <label for="maternity_covered_no">No</label><br />
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Gym membership:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ gym_membership }}</span>
+
+                  <!-- if in editmode show this -->
+                  <span v-else>
+                    <input
+                      type="radio"
+                      id="gym_membership_yes"
+                      name="gym"
+                      value="true"
+                      v-model="gym_membership"
+                    />
+                    <label for="gym_membership_yes">Yes </label>
+                    <input
+                      type="radio"
+                      id="gym_membership_no"
+                      name="gym"
+                      value="false"
+                      v-model="gym_membership"
+                    />
+                    <label for="gym_membership_no">No</label><br />
+                  </span>
+                </td>
+                <td>
+                  Free doctor on call:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ free_doctor_on_call }}</span>
+
+                  <!-- if in editmode show this -->
+                  <span v-else>
+                    <input
+                      type="radio"
+                      id="free_doctor_on_call_yes"
+                      name="doctor"
+                      value="true"
+                      v-model="free_doctor_on_call"
+                    />
+                    <label for="free_doctor_on_call_yes">Yes </label>
+                    <input
+                      type="radio"
+                      id="free_doctor_on_call_no"
+                      name="doctor"
+                      value="false"
+                      v-model="free_doctor_on_call"
+                    />
+                    <label for="free_doctor_on_call_no">No</label><br />
+                  </span>
+                </td>
+                <td>
+                  Paid leaves:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ paid_leaves }}</span>
+
+                  <!-- if in editmode show this -->
+                  <span v-else>
+                    <input type="number" v-model.number="paid_leaves" />
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  Flexible work timings:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ flexible_work_timings }}</span>
+
+                  <!-- if in editmode show this -->
+                  <span v-else>
+                    <input
+                      type="radio"
+                      id="flexible_work_timings_yes"
+                      name="work"
+                      value="true"
+                      v-model="flexible_work_timings"
+                    />
+                    <label for="flexible_work_timings_yes">Yes </label>
+                    <input
+                      type="radio"
+                      id="flexible_work_timings_no"
+                      name="work"
+                      value="false"
+                      v-model="flexible_work_timings"
+                    />
+                    <label for="flexible_work_timings_no">No</label><br />
+                  </span>
+                </td>
+                <td>
+                  Remote option:
+                  <!-- if not in editmode show this -->
+                  <span v-if="!edit_mode">{{ remote_option }}</span>
+
+                  <!-- if in editmode show this -->
+                  <span v-else>
+                    <input
+                      type="radio"
+                      id="remote_option_yes"
+                      name="remote"
+                      value="true"
+                      v-model="remote_option"
+                    />
+                    <label for="remote_option_yes">Yes </label>
+                    <input
+                      type="radio"
+                      id="remote_option_no"
+                      name="remote"
+                      value="false"
+                      v-model="remote_option"
+                    />
+                    <label for="remote_option_no">No</label><br />
+                  </span>
+                </td>
+                <td>
+                  <!-- if in editmode show this -->
+                  <div v-if="edit_mode">
+                    <input
+                      type="button"
+                      value="save"
+                      @click="save"
+                      class="button"
+                    />
+                    &nbsp;&nbsp;
+                    <input
+                      type="button"
+                      value="reset"
+                      @click="reset"
+                      class="button"
+                    />
+                  </div>
+                  <!-- if not in editmode show this -->
                   <input
-                    type="radio"
-                    id="remote_option_yes"
-                    name="remote"
-                    value="true"
-                    v-model="remote_option"
-                  />
-                  <label for="remote_option_yes">Yes </label>
-                  <input
-                    type="radio"
-                    id="remote_option_no"
-                    name="remote"
-                    value="false"
-                    v-model="remote_option"
-                  />
-                  <label for="remote_option_no">No</label><br />
-                </span>
-              </td>
-              <td>
-                <!-- if in editmode show this -->
-                <div v-if="edit_mode">
-                  <input
+                    v-else
                     type="button"
-                    value="save"
-                    @click="save"
-                    class="save-button"
+                    class="button"
+                    value="Edit"
+                    @click="edit"
                   />
-                  &nbsp;&nbsp;
-                  <input
-                    type="button"
-                    value="reset"
-                    @click="reset"
-                    class="save-button"
-                  />
-                </div>
-                <!-- if not in editmode show this -->
-                <input
-                  v-else
-                  type="button"
-                  class="save-button"
-                  value="Edit"
-                  @click="edit"
-                />
-              </td>
-            </tr>
-          </table>
-        </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </fieldset>
         <br /><br />
         <!-- Show top three competitors -->
         <div class="title">Competitors</div>
@@ -302,29 +293,48 @@
         <!-- Competitors -->
         <div class="competitors" v-if="competitors.length > 0">
           <competitor v-for="competitor in competitors" :key="competitor.id">
-            <template v-slot:header> {{ competitor.name }} </template>
+            <template v-slot:header  > <a :href="'/company?id=' + competitor.id">{{ competitor.name }} </a></template>
             <template v-slot:insured>{{ competitor.sum_insured }} </template>
-            <template v-slot:family>{{ competitor.family_covered }} </template>
+            <template v-slot:family>
+              <span v-if="competitor.family_covered" style="color:green">&#10004;</span>
+              <span v-else style="color:red">&#10008;</span>
+            </template>
             <template v-slot:parents>
-              {{ competitor.parents_covered }}
+               
+              <span v-if="competitor.parents_covered" style="color:green">&#10004;</span>
+              <span v-else style="color:red">&#10008;</span>
             </template>
             <template v-slot:maternity
-              >{{ competitor.maternity_covered }}
+              > 
+              <span v-if="competitor.maternity_covered" style="color:green">&#10004;</span>
+              <span v-else style="color:red">&#10008;</span>
             </template>
-            <template v-slot:gym> {{ competitor.gym_membership }} </template>
+            <template v-slot:gym>  
+              <span v-if="competitor.gym_membership" style="color:green">&#10004;</span>
+              <span v-else style="color:red">&#10008;</span>
+            </template>
             <template v-slot:doctor
-              >{{ competitor.free_doctor_on_call }}
+              > 
+              <span v-if="competitor.free_doctor_on_call" style="color:green">&#10004;</span>
+              <span v-else style="color:red">&#10008;</span>
             </template>
             <template v-slot:leaves> {{ competitor.paid_leaves }} </template>
             <template v-slot:timing>
-              {{ competitor.flexible_work_timings }}
+              
+              <span v-if="competitor.flexible_work_timings" style="color:green">&#10004;</span>
+              <span v-else style="color:red">&#10008;</span>
             </template>
-            <template v-slot:remote> {{ competitor.remote_option }} </template>
+            <template v-slot:remote>  
+              <span v-if="competitor.remote_option" style="color:green">&#10004;</span>
+              <span v-else style="color:red">&#10008;</span> </template>
           </competitor>
         </div>
         <div style="text-align: center" v-else>No Competitors available.</div>
       </div>
     </div>
+    <!-- Modal  for email -->
+    <modal v-if="popup" :website="website" @close="popup=false" @edit="edit_mode=true" @toast="showToast"></modal>
+ 
   </div>
 </template>
 
@@ -334,8 +344,9 @@
 .competitors {
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
   margin-bottom: 20px;
+  place-content: center;
 }
 
 .benefits {
@@ -357,10 +368,25 @@
 .title {
   text-align: center;
   color: #231c57;
-  font-size: 32px;
+  font-size: 22px;
+  padding: 10px;
+  font-family: cursive;
 }
-.save-button {
-  width: 80px;
+fieldset {
+  background-color: rgb(245, 237, 222);
+
+  border-radius: 20px;
+}
+
+legend {
+  background-color: rgb(121, 133, 160);
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+.button {
+  width: 100px;
   height: 30px;
   background-color: #3d9ae2;
   color: #ffffff;
@@ -368,6 +394,16 @@
   cursor: pointer;
   border: none;
   border-radius: 10px;
+  margin: 5px;
+}
+.button:disabled {
+  background-color: #4b677c;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.button:hover,
+.button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #3d9ae2;
 }
 
 /* Table */
@@ -500,11 +536,13 @@ import gql from "graphql-tag";
 
 // Component Imports
 import competitor from "./competitor.vue";
+import modal from "./modal.vue";
 export default {
   name: "company",
-  components: { competitor },
+  components: { competitor,modal },
   data: function () {
     return {
+      popup: false,
       company: [],
       competitors: [],
       edit_mode: false,
@@ -556,7 +594,16 @@ export default {
      * @param  {Number} value Tab to be switched
      */
     save: async function () {
+      if(this.number_of_employees<2){
+         this.showToast("Number of employees should be greater than one");
+         return false
+      }  
+      if( this.industry==""){
+         this.showToast("Industry should not be empty");
+         return false
+      }
       try {
+        document.getElementById("loader_cover").style.display = "block";
         this.result = await this.$apollo.mutate({
           mutation: gql`
             mutation(
@@ -617,9 +664,13 @@ export default {
         });
 
         this.showToast("Saved successfully");
+        await this.getCompetitors();
       } catch (e) {
         console.error(e);
         this.showToast(e);
+      }
+      finally{
+        document.getElementById("loader_cover").style.display = "none";
       }
     },
 
@@ -628,6 +679,7 @@ export default {
      */
     getCompanies: async function () {
       try {
+        document.getElementById("loader_cover").style.display = "block";
         let result = await this.$apollo.query({
           query: gql`
             query($id: ID!) {
@@ -653,11 +705,15 @@ export default {
           variables: {
             id: this.id,
           },
+          fetchPolicy: "network-only",
         });
         this.company = result["data"]["company"];
       } catch (e) {
         console.error(e);
         this.showToast(e);
+      }
+      finally{
+        document.getElementById("loader_cover").style.display = "none";
       }
     },
 
@@ -666,6 +722,7 @@ export default {
      */
     getCompetitors: async function () {
       try {
+        document.getElementById("loader_cover").style.display = "block";
         let result = await this.$apollo.query({
           query: gql`
             query($id: ID!) {
@@ -691,11 +748,15 @@ export default {
           variables: {
             id: this.id,
           },
+          fetchPolicy: "network-only",
         });
         this.competitors = result["data"]["competitors"];
       } catch (e) {
         console.error(e);
         this.showToast(e);
+      }
+      finally{
+        document.getElementById("loader_cover").style.display = "none";
       }
     },
 
@@ -703,7 +764,9 @@ export default {
      * Reset the values in the fields
      */
     reset: async function () {
-      this.fillValues();
+      await this.getCompanies();
+    await this.getCompetitors();
+    this.fillValues();
       this.showToast("Reset successfully");
     },
 
@@ -711,18 +774,7 @@ export default {
      * Show edit mode only if email and website domain are same
      */
     edit: function () {
-      let email = localStorage.getItem("email");
-      let email_domain = "";
-      if (email) {
-        email_domain = email.substr(0, email.indexOf("@"));
-      }
-
-      let website_domain = this.website.substr(0, this.website.indexOf("."));
-      if (email_domain == website_domain) {
-        this.edit_mode = true;
-      } else {
-        this.showToast("Not Authorized");
-      }
+      this.popup= true
     },
 
     /**
@@ -744,6 +796,7 @@ export default {
     await this.getCompetitors();
     this.fillValues();
   },
+ 
 };
 </script>
 

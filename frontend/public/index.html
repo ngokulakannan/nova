@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" href="<%= BASE_URL %>/img/logo.png" type="image/x-icon">
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
@@ -14,9 +14,40 @@
 
 <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+                Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+
+    <div class="main">
+        <!-- outer div -->
+        <div class="dashboard_cover">
+            <!-- Header of the App -->
+            <div class="header">
+                <!-- App logo -->
+                <div class="holder">
+                    <a href="/" title="Go to Dashborad"><img src="<%= BASE_URL %>/img/logo.png" class="logo"
+                            height="40px" />
+                        <span class="logo-text">Nova</span>
+                        <span class="logo-sub-text">Benefits</span></a>
+
+                </div>
+                <!-- toast to show messages -->
+                <div class="toast"></div>
+
+
+            </div>
+            <div id="app">
+
+            </div>
+
+
+        </div>
+        <!-- Loader -->
+        <div id="loader_cover">
+            <div id="loader"></div>
+        </div>
+    </div>
+
     <!-- built files will be auto injected -->
 </body>
 

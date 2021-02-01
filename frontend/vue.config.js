@@ -13,28 +13,14 @@ module.exports = {
     runtimeCompiler: true,
 
     pages: {
-        company: {
-            entry: './src/pages/company/company.js',
-            template: 'public/index.html',
-            filename: 'company.html',
-            title: 'Company Details',
-            chunks: ['chunk-vendors', 'chunk-common', 'company']
-        },
+
         dashboard: {
 
-            entry: './src/pages/dashboard/dashboard.js',
+            entry: './src/pages/dashboard.js',
             template: 'public/index.html',
-            filename: 'dashboard.html',
+            filename: 'index.html',
             title: 'Dashboard',
             chunks: ['chunk-vendors', 'chunk-common', 'dashboard']
-        },
-        signup: {
-
-            entry: './src/pages/signup/signup.js',
-            template: 'public/index.html',
-            filename: 'signup.html',
-            title: 'Signup',
-            chunks: ['chunk-vendors', 'chunk-common', 'signup']
         },
 
     }
